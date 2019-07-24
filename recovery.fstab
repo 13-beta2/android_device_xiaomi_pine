@@ -1,0 +1,28 @@
+#mount point    fstype	device
+
+/boot			emmc	/dev/block/bootdevice/by-name/boot            flags=backup=1;flashimg=1
+/recovery		emmc	/dev/block/bootdevice/by-name/recovery        flags=backup=1;flashimg=1
+/system_root	ext4	/dev/block/bootdevice/by-name/system          flags=backup=1;display="System";wipeingui
+/system_image	emmc	/dev/block/bootdevice/by-name/system          flags=backup=1;display="System Image";flashimg=1
+/vendor			ext4	/dev/block/bootdevice/by-name/vendor          flags=backup=1;display="Vendor";wipeingui
+/vendor_image	emmc	/dev/block/bootdevice/by-name/vendor          flags=backup=1;display="Vendor Image";flashimg=1
+
+/data			ext4	/dev/block/bootdevice/by-name/userdata        flags=backup=1;wipeingui;encryptable=footer
+
+/dsp			emmc	/dev/block/bootdevice/by-name/dsp             flags=backup=1;display="DSP";flashimg=1
+/modem			emmc	/dev/block/bootdevice/by-name/modem           flags=backup=1;display="Modem Image";flashimg=1
+
+/fsg			emmc	/dev/block/bootdevice/by-name/fsg             flags=backup=1;display="Modem Data";flashimg=0
+/efs1			emmc	/dev/block/bootdevice/by-name/modemst1        flags=backup=1;display="Modem EFS1";flashimg=1;subpartitionof=/fsg
+/efs2			emmc	/dev/block/bootdevice/by-name/modemst2        flags=backup=1;display="Modem EFS2";flashimg=1;subpartitionof=/fsg
+/fsg			emmc	/dev/block/bootdevice/by-name/fsg             flags=backup=0;display="Modem FSG";flashimg=1
+/fsc			emmc	/dev/block/bootdevice/by-name/fsc             flags=backup=1;display="Modem FSC";flashimg=1;subpartitionof=/fsg
+/mcfg			emmc	/dev/block/bootdevice/by-name/mcfg            flags=backup=1;display="Modem MCFG";flashimg=1;subpartitionof=/fsg
+
+/cache			ext4	/dev/block/bootdevice/by-name/cache           flags=backup=1;wipeingui;wipeduringfactoryreset
+/cust			ext4	/dev/block/bootdevice/by-name/cust            flags=backup=1;display="Custom";wipeingui
+/persist		ext4	/dev/block/bootdevice/by-name/persist         flags=backup=1;display="Persist"
+/misc			emmc	/dev/block/bootdevice/by-name/misc
+
+/external_sd 	vfat	/dev/block/mmcblk1p1                          flags=display="External SD";storage;wipeingui;removable;backup=0
+#/usb-otg		auto    /dev/block/sda1                               flags=display="USB OTG";storage;removable;backup=0
