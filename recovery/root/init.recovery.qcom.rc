@@ -1,7 +1,4 @@
 on init
-    #mkdir /system/bin
-    #mkdir /system/etc
-    symlink /system/etc /etc
     start hwservicemanager
     
 on fs
@@ -57,7 +54,7 @@ service hwservicemanager /sbin/hwservicemanager
 
 service servicemanager /sbin/servicemanager
     user root
-    group root readproc
+    group root
     disabled
     seclabel u:r:recovery:s0
 
@@ -70,7 +67,7 @@ service keystore_auth /sbin/keystore_auth
 
 service keystore /sbin/keystore /tmp/misc/keystore
     user root
-    group root drmrpc readproc
+    group root
     disabled
     seclabel u:r:recovery:s0
 
@@ -99,15 +96,13 @@ on property:crypto.ready=1
     #setprop vendor.sys.listeners.registered true
 
 on property:vendor.sys.listeners.registered=true
-    #start hwservicemanager
+    mkdir -p /tmp/misc/keystore
     start keymaster-4-0
     start gatekeeper-1-0
     start servicemanager
     
 on property:crypto.ready=0
     stop qseecomd
-    stop keymaster-4-0
     stop gatekeeper-1-0
-    #stop hwservicemanager
-    #stop keystore
+    stop keymaster-4-0
     stop servicemanager

@@ -26,10 +26,6 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     charger
 
-# Encryption
-PRODUCT_PACKAGES += \
-    libcryptfs_hw
-
 # Kernel+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/kernel:kernel \
@@ -47,4 +43,6 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := false
 
 PRODUCT_PROPERTY_OVERRIDES := ro.treble.enabled=true
 # HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += ro.vendor.build.security_patch=2099-12-31
+PRODUCT_PROPERTY_OVERRIDES += \
+		ro.build.version.security_patch=2099-12-31 \
+		ro.vendor.build.security_patch=2099-12-31
